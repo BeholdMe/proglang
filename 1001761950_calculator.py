@@ -6,4 +6,5 @@ def calculator():
     operator = ""
     answer = 0.0
 
-    # 
+    # ask the user for inputs (num1, num2)
+    
