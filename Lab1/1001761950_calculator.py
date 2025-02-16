@@ -50,7 +50,7 @@ def calculator():
             print("Something went wrong with your expression")
             continue
         except ValueError:
-            print("Numbers are not floating point numbers. Please enter NUMBERS!")
+            print("First and third entries are not floating point numbers. Please enter NUMBERS!")
             continue
 
         # Use operator to choose the function
@@ -58,12 +58,15 @@ def calculator():
             answer = add(num1, num2)
         elif operator == '-':
             answer = subtract(num1, num2)
-        elif operator == '-':
-            answer = subtract(num1, num2)
-        elif operator == '-':
-            answer = subtract(num1, num2)
+        elif operator == '*':
+            answer = multiply(num1, num2)
+        elif operator == '/':
+            answer = divide(num1, num2)
         else:
             print("You did not type an OPERATOR (+, -. *, /)! Please type one of those operators")
             continue
 
-        print("Result: " answer)
+        print(f"Result: {answer}")
+
+if __name__ == '__main__':
+    calculator()
