@@ -14,7 +14,7 @@ def multiply(num1, num2):
 def divide(num1, num2):
     #make sure y is not 0 b/c that will cause an error
     if num2 == 0.0:
-        return "You can't divide by 0 yet!"
+        return "You can't divide by 0 in this universe!"
     else:
         return num1 / num2
 
@@ -33,15 +33,37 @@ def calculator():
         # ask the user for inputs (num1, num2)
         inStr = input("Enter expression (or Q to quit): ")
         if inStr == 'q' or inStr == 'Q':
+            print("Exiting...")
             break
 
 
         try:
             inStrAsSeparate = inStr.split(" ") # split by spaces
+            if len(inStrAsSeparate) != 3:
+                print("There is NOT exactly two numbers with an operator in the middle, and the three are separated by spaces.")
+                continue
+            # Set the three separate strings into num1, operator, and num2 respectively
+            num1, operator, num2 = inStrAsSeparate
+            num1 = float(num1)
+            num2 = float(num2)
         except IndexError:
             print("Something went wrong with your expression")
             continue
+        except ValueError:
+            print("Numbers are not floating point numbers. Please enter NUMBERS!")
+            continue
 
-        # Check that first and last elements in inStrAsSeparate are numbers (specifically floats)
-        # Check that the second element is one of +, -, *, /
-        # 
+        # Use operator to choose the function
+        if operator == '+':
+            answer = add(num1, num2)
+        elif operator == '-':
+            answer = subtract(num1, num2)
+        elif operator == '-':
+            answer = subtract(num1, num2)
+        elif operator == '-':
+            answer = subtract(num1, num2)
+        else:
+            print("You did not type an OPERATOR (+, -. *, /)! Please type one of those operators")
+            continue
+
+        print("Result: " answer)
