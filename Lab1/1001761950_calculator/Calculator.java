@@ -1,4 +1,3 @@
-package Lab1;
 import java.util.Scanner;
 
 public class Calculator
@@ -109,5 +108,74 @@ public class Calculator
         String fullString = num1String + " " + this.operator + " " + num2String + " = " + ansString;
 
         return fullString;
+    }
+
+    public static void main(String args[])
+    {
+        Calculator calculator;
+        float a = 0, b = 0, c = 0;
+        String op, choice;
+
+        Scanner kb = new Scanner(System.in);
+        boolean isNotFloat = true;
+
+        //do while to keep asking user if they want to continue calculating new expressions
+        do
+        {
+            //keep asking until a proper number 1 is given
+            do
+            {
+                System.out.print("\nPlease enter first number: ");
+                //make sure the input is a float, make the user retype if not a float data type
+                if(kb.hasNextFloat())
+                {
+                    isNotFloat = false;
+                    a = kb.nextFloat();
+                }else
+                {
+                    isNotFloat = true;
+                    System.out.println("Oops! You wrote something that isn't a number. Please retype when prompted.");
+                    kb.next();
+                }
+            }while(isNotFloat);
+
+            //keep asking until a proper number 2 is given
+            do
+            {
+                System.out.print("\nPlease enter second number: ");
+                //make sure the input is a float, make the user retype if not a float data type
+                if(kb.hasNextFloat())
+                {
+                    isNotFloat = false;
+                    b = kb.nextFloat();
+                }else
+                {
+                    isNotFloat = true;
+                    System.out.println("Oops! You wrote something that isn't a number. Please retype when prompted.");
+                    kb.next();
+                }
+            }while(isNotFloat);
+
+            //keep asking until a proper operator is given
+            do
+            {
+                System.out.print("Please enter operator: ");
+                op = kb.next();
+                //make sure the input is +, -, *, or /
+                //if not, repeat question until it is
+            }while( !(op.equals("+") || op.equals("-") || op.equals("*") || op.equals("/") ) );
+
+            //construct the calculator object with the given inputs
+            calculator = new Calculator(a, b, op);
+
+            //calc and return
+            c = calculator.calc();
+            String answerAsString = calculator.answerToString();
+            System.out.println(answerAsString);
+
+            System.out.println("Would you like to perform another calculation? (Y/n): ");
+            choice = kb.next();
+        }while(choice.equals("Y") || choice.equals("y"));
+        kb.close();
     }
 }
