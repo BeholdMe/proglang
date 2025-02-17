@@ -173,7 +173,7 @@ public class Calculator
             String answerAsString = calculator.answerToString();
             System.out.println(answerAsString);
 
-            System.out.println("Would you like to perform another calculation? (Y/n): ");
+            System.out.print("Would you like to perform another calculation? (Y/n): ");
             choice = kb.next();
         }while(choice.equals("Y") || choice.equals("y"));
         kb.close();
