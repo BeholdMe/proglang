@@ -2,14 +2,29 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-//Prototypes for the functions add, multiply, subtract, and divide
-double add(double num1, double num2);
-double multiply(double num1, double num2);
-double subtract(double num1, double num2);
-double divide(double num1, double num2);
+double add(double num1, double num2)
+{
+    return num1 + num2;
+}
 
-double getNum();
-char getOp();
+double subtract(double num1, double num2)
+{
+    return num1 - num2;
+}
+
+double multiply(double num1, double num2)
+{
+    return num1 * num2;
+}
+
+double divide(double num1, double num2)
+{
+    if(num2 == 0)
+    {
+        return 0;
+    }
+    return num1 / num2;
+}
 
 
 int main()
@@ -27,7 +42,7 @@ int main()
             printf("WRONG! Type a MATH expression (2 numbers separated by an operator).\n");
             continue; //if they didn't write an expression using exactly three elements -> redo the loop
         }
-        
+
         while ( getchar() != '\n' ); // clear scanf buffer. Putting this here as check cause it keeps not reading the scanf for choice later on.
 
         //perform the calculator depending on the operator
@@ -79,26 +94,3 @@ int main()
     return 0;
 }
 
-double add(double num1, double num2)
-{
-    return num1 + num2;
-}
-
-double subtract(double num1, double num2)
-{
-    return num1 - num2;
-}
-
-double multiply(double num1, double num2)
-{
-    return num1 * num2;
-}
-
-double divide(double num1, double num2)
-{
-    if(num2 == 0)
-    {
-        return 0;
-    }
-    return num1 / num2;
-}
