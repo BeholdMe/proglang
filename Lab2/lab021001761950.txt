@@ -1,0 +1,81 @@
+/*
+	Name:		Balaputradewa RatuWina
+	ID:		1001761950
+	Due Date:	03.09.2025
+*/
+
+//create input array inputTable containing numbers from 1 to 10
+const inputTable = Array.from( {length: 10}, (_,i) => i + 1 );
+//debug
+console.log("input table is ", inputTable);
+
+
+
+//generate multiplication tables by mapping inputTable with n*i
+const fiveTable = inputTable.map(n => n * 5);
+const thirteenTable = inputTable.map(n => n * 13);
+const squaresTable = inputTable.map(n => n * n);
+//debug
+console.log("5x table is ", fiveTable);
+console.log("13x table is ", thirteenTable);
+console.log("x^2 table is ", squaresTable);
+
+
+//get odd multiples of 5 using filter
+const oddMultiplesOfFive = fiveTable.filter(n => n % 2 !== 0);
+//debug
+console.log("Odd mults of 5: ", oddMultiplesOfFive);
+
+
+//Sum of even multiples of 7
+//first a modified multiplication(inputTable(7))
+const sevenTable = inputTable.map(n => n * 7);
+//find the even multiples
+const evenMultiplesOfSeven = sevenTable.filter(n => n % 2 === 0);
+//find the sum of the even multiples of 7
+const sumEvenMultiplesOfSeven = evenMultiplesOfSeven.reduce((x,y) => x + y, 0);
+//debug
+console.log("Sum of even mults of 7: ", sumEvenMultiplesOfSeven);
+
+
+
+
+//currying for cylinders
+//cylinder volume  = pi * r^2 * h
+const cylinderVolume = radius => height => 3.14 * radius * radius * height;
+console.log("Volume when cylinder has a radius of 5 and height of 10: ", cylinderVolume(5)(10));
+console.log("Volume when cylinder has a radius of 5 and height of 17: ", cylinderVolume(5)(17));
+console.log("Volume when cylinder has a radius of 5 and height of 11: ", cylinderVolume(5)(11));
+
+
+
+//HTML table with closures
+/*
+makeTag = function(beginTag, endTag){
+	return function(textcontent){
+		return beginTag + textcontent + endTag;
+	}
+}
+*/
+//sandwich content between the beginTag and endTag
+const makeTag = (beginTag, endTag) => textContent => beginTag + textContent + endTag;
+//make row and cell for output
+const row = makeTag("<tr>", "</tr>");
+const cell = makeTag("<td>", "</td>");
+//create row with 3 cells
+const rowContent = row(cell("| 01 |") + cell("| 02 |") + cell("| 03 |"));
+const table = makeTag("<table>", "</table>")(rowContent); //create <table> </table> with 01, 02, 03 as cells
+//output the table
+console.log("Table\n");
+console.log(table);
+
+
+
+//Generic multiples finder
+//multiple and cond as parameters with cond being a function
+//uses the map function to map the multiplication function onto the inputTable created above
+//apply filter with given condition after
+const multipleFinder = multiple => cond => inputTable.map(n => n * multiple).filter(cond);
+//debug
+console.log("Odd multiples of 11: ", multipleFinder(11)(n => n % 2 !== 0));
+console.log("Even multiples of 3: ", multipleFinder(3)(n => n % 2 === 0));
